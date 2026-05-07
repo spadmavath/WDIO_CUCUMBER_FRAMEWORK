@@ -1,6 +1,7 @@
 Feature: Login Functionality 
+ 
+ @login
  Scenario: Successful Login
-@login
   Given I open the login page
    When I enter username "testuser"
    And I enter password "testpassword"
