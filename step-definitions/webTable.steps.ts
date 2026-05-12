@@ -59,4 +59,46 @@ console.log(JSON.stringify(arr));
     // /**get single cell data */
     let celldata=await $("//table[@class='-striped -highlight table table-striped table-bordered table-hover']/tbody/tr[1]/td[7]");
 
+/**
+ * SCROLLING 
+ * 
+ * VISIBLE PORTION
+ * a.window object
+ * 1.scrollBy()
+ * Y ->[-]Window.innerHeight
+ */
+ /**scrolling down**/
+await browser.execute(() => {
+    window.scrollBy(0, window.innerHeight);
+});
+await browser.pause(2000);
+/**scrolling up**/
+await browser.execute(() => {
+    window.scrollBy(0, -window.innerHeight);
+     
+});
+await browser.pause(2000);
+
+/**
+ * Scrolling
+ * Invisible Portion
+ * 1.scrollto()
+ * y->document.body.scrolltop[scrollHeight]
+ * 
+ */
+await browser.execute(()=>{
+    window.scrollTo(0, document.body.scrollHeight);
+
+});
+await browser.pause(2000);
+await browser.execute(()=>{
+    window.scrollTo(0, document.body.scrollTop);
+
+});
+await browser.pause(2000);
+await browser.execute(()=>{
+window.scrollTo(0, 0);
+})
+
+
 });

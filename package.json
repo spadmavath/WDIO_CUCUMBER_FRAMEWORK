@@ -4,8 +4,8 @@
   "description": "WebdriverIO v9 TypeScript Cucumber Framework",
   "type": "module",
   "scripts": {
-    "login": "wdio run wdio.conf.ts ,--spec ./features/login.feature",
-    "test": "wdio run wdio.conf.ts"
+    "test": "wdio run wdio.conf.ts",
+    "login": "npx wdio wdio.conf.ts --cucumberOpts.tagExpression='@login'"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^10.3.1",

@@ -11,6 +11,7 @@ export const config: Options.Testrunner = {
 
   capabilities: [
     {
+      
       browserName: 'chrome',
       'goog:chromeOptions': {
         args: [
@@ -44,7 +45,8 @@ export const config: Options.Testrunner = {
     snippets: true,
     source: true,
     strict: false,
-    timeout: 60000,
+    tags: '@login',
+    timeouts: 60000,
     ignoreUndefinedDefinitions: false,
   },
 }
