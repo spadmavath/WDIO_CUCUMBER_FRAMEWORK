@@ -2,6 +2,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 import { Options } from '@wdio/types'
 let headless=process.env.HEADLESS
+let debug=process.env.HEADLESS
 export const config: Options.Testrunner & { capabilities: any } = {
   runner: 'local',
 
@@ -20,13 +21,14 @@ export const config: Options.Testrunner & { capabilities: any } = {
           '--no-sandbox',
           '--disable-dev-shm-usage',
           '--log-level=3',
+          ...(headless.toUpperCase()==="Y" ? ['--disable-web-security','--headless'] : []),
         ],
         excludeSwitches: ['enable-logging'],
       },
     },
   ],
 
-  logLevel: 'warn',
+  logLevel: 'error',
   bail: 0,
   waitforTimeout: 10000,
   connectionRetryTimeout: 120000,
