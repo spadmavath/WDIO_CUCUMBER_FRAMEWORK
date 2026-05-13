@@ -3,13 +3,14 @@ import { expect } from "@wdio/globals";
 import { error } from "console";
 import { InvalidatedProjectKind } from "typescript";
 Given('login in to inventory web app',async()=>{
+   // console.log(`test username:${process.env.TEST_USERNAME}`);
     await browser.url("https://www.saucedemo.com/");
     await browser.setTimeout({ implicit: 5000 ,pageLoad: 10000});
     const usernameInput=await $("#user-name");
     const passwordInput=await $("#password");
     const loginButton=await $("#login-button");
-    await usernameInput.setValue("standard_user");
-    await passwordInput.setValue("secret_sauce");
+    await usernameInput.setValue(process.env.TEST_USERNAME);
+    await passwordInput.setValue(process.env.TEST_PASSWORD);
     await loginButton.click();
 });
 When(/^inventory page should list (.*)$/, async function (noOfItems) {

@@ -1,17 +1,19 @@
+import dotenv from 'dotenv'
+dotenv.config()
 import { Options } from '@wdio/types'
-
-export const config: Options.Testrunner = {
+let headless=process.env.HEADLESS
+export const config: Options.Testrunner & { capabilities: any } = {
   runner: 'local',
 
   tsConfigPath: './tsconfig.json',
 
   specs: ['./features/**/*.feature'],
   exclude: [],
-  maxInstances: 1,
+  maxInstances: 10,
 
-  capabilities: [
+  capabilities:[
     {
-      
+      maxInstances:5,
       browserName: 'chrome',
       'goog:chromeOptions': {
         args: [
@@ -49,4 +51,5 @@ export const config: Options.Testrunner = {
     timeouts: 60000,
     ignoreUndefinedDefinitions: false,
   },
+  
 }
