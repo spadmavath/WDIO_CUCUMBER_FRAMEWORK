@@ -1,8 +1,8 @@
-import dotenv from 'dotenv'
-dotenv.config()
+import dotenv from 'dotenv';
+dotenv.config();
 import { Options } from '@wdio/types'
 let headless=process.env.HEADLESS
-let debug=process.env.HEADLESS
+//let debug=process.env.DEBUG
 export const config: Options.Testrunner & { capabilities: any } = {
   runner: 'local',
 
@@ -21,7 +21,7 @@ export const config: Options.Testrunner & { capabilities: any } = {
           '--no-sandbox',
           '--disable-dev-shm-usage',
           '--log-level=3',
-          ...(headless.toUpperCase()==="Y" ? ['--disable-web-security','--headless'] : []),
+          ...(headless?.toUpperCase() === 'Y' ? ['--disable-web-security', '--headless'] : []),
         ],
         excludeSwitches: ['enable-logging'],
       },
@@ -49,7 +49,7 @@ export const config: Options.Testrunner & { capabilities: any } = {
     snippets: true,
     source: true,
     strict: false,
-    tags: '@login',
+    tagExpression: '@login',
     timeouts: 60000,
     ignoreUndefinedDefinitions: false,
   },
