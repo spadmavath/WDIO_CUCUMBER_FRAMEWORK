@@ -1,11 +1,11 @@
 import { Before, After, BeforeAll, AfterAll } from '@wdio/cucumber-framework'
 
 BeforeAll(async () => {
-  console.log('\n🚀 Starting Test Suite...\n')
+ // console.log('\n🚀 Starting Test Suite...\n')
 })
 
 AfterAll(async () => {
-  console.log('\n✅ Test Suite Complete.\n')
+  // console.log('\n✅ Test Suite Complete.\n')
 })
 
 Before(async () => {

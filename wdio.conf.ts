@@ -1,12 +1,13 @@
 import dotenv from 'dotenv';
 dotenv.config();
 import { Options } from '@wdio/types'
-let headless=process.env.HEADLESS
-//let debug=process.env.DEBUG
+let headless = process.env.HEADLESS
+let debug = process.env.DEBUG || 'N'
 export const config: Options.Testrunner & { capabilities: any } = {
   runner: 'local',
 
   tsConfigPath: './tsconfig.json',
+  
 
   specs: ['./features/**/*.feature'],
   exclude: [],
@@ -28,7 +29,7 @@ export const config: Options.Testrunner & { capabilities: any } = {
     },
   ],
 
-  logLevel: 'error',
+  logLevel: debug.toUpperCase() === 'Y' ? 'debug' : 'error',
   bail: 0,
   waitforTimeout: 10000,
   connectionRetryTimeout: 120000,
@@ -53,5 +54,32 @@ export const config: Options.Testrunner & { capabilities: any } = {
     timeouts: 60000,
     ignoreUndefinedDefinitions: false,
   },
+  /**
+   * cucumber hooks
+   * @param{string}
+   * @param {GherkinDocument.IFeature}
+   * 
+   */
+  // beforeFeature: function(url,feature){
+
+  // },
+  afterStep: async function(step,scenario,result){
+    console.log(`>>step:${JSON.stringify(step)}`);
+    console.log(`>>scenario:${JSON.stringify(scenario)}`);
+    console.log(`>>result:${JSON.stringify(result)}`);
+    //takes screenshot on failure
+    if (!result.passed) {
+
+    const fileName = `${scenario.name.replace(/\s+/g, "_")}.png`;
+
+    await browser.saveScreenshot(
+      `../allure-result/screenshot/${fileName}`
+    );
+
+    console.log("Screenshot saved");
+  }
+
+  }
+
   
 }

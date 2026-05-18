@@ -35,10 +35,10 @@ for(let i=0;i< await priceArray.length ;i++){
     pricelist.push(priceText);
 
 }
-console.log(`Price list: ${pricelist}`);
+//console.log(`Price list: ${pricelist}`);
 /**2. convert the price string into a number// */
 pricelist=pricelist.map(ele =>parseInt+(ele.replace("$","")));
-console.log(`Price list after conversion: ${pricelist}`);
+//console.log(`Price list after conversion: ${pricelist}`);
 /**3. validate if any price <=0 */
 let invalidprice=pricelist.filter(price =>price<=0);
 expect(invalidprice.length).toBe(0);
