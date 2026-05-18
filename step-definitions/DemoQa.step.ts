@@ -3,7 +3,7 @@ import { expect } from "@wdio/globals";
 import NewLogin from  "../pages/NewLogin";
 Given(`User opens DemoQA text box page`,async()=>{
     await browser.url(process.env.DemoQa_URL); 
-    console.log(process.env.URL)
+    //console.log(process.env.URL)
 });
 Then(`User enters details`,async()=>{
     await NewLogin.username.setValue("Padmavathi");
@@ -18,7 +18,7 @@ When(`User clicks submit button`,async()=>{
     timeout: 5000
 });
 
-    console.log("Scrolled to submit button");
+    //console.log("Scrolled to submit button");
     await NewLogin.submitButton.click();
     
 });

@@ -1,5 +1,4 @@
 Feature: Text Box Functionality
-@login
 Scenario: Submit user details
 
   Given User opens DemoQA text box page

@@ -15,8 +15,8 @@ Given('login to the website', async () => {
 
     await loginBtn.click();
    } catch (error) {
-    console.error("Error during login:", error);
-    console.log("Attempting to reload the page and retry login...");
+   //  console.error("Error during login:", error);
+   //  console.log("Attempting to reload the page and retry login...");
     await browser.pause(2000);
     await browser.refresh();
     const username = await $("#user-name");
