@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "test": "wdio run wdio.conf.ts",
-    "login": "set HEADLESS=N && npx wdio wdio.conf.ts --cucumberOpts.tagExpression=@login"
+    "login": "set HEADLESS=N && npx wdio wdio.conf.ts --cucumberOpts.tagExpression=@login",
+    "validLogin": "set HEADLESS=N && npx wdio wdio.conf.ts --cucumberOpts.tagExpression=@validLogin"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^10.3.1",
