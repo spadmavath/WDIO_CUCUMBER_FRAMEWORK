@@ -4,6 +4,8 @@ import allure from "@wdio/allure-reporter"
 import { Options } from '@wdio/types'
 import { features } from 'process';
 import * as fs from 'fs';
+import { TIMEOUT } from 'dns';
+import { Script } from 'vm';
 let headless = process.env.HEADLESS
 let debug = process.env.DEBUG || 'N'
 export const config: Options.Testrunner & { capabilities: any } = {
@@ -29,6 +31,12 @@ export const config: Options.Testrunner & { capabilities: any } = {
         ],
         excludeSwitches: ['enable-logging'],
       },
+    },
+    {
+      maxInstances:5,
+      browserName: 'firefox',
+    
+      
     },
   ],
 

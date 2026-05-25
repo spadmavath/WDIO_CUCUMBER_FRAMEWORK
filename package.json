@@ -6,7 +6,8 @@
   "scripts": {
     "test": "wdio run wdio.conf.ts",
     "login": "set HEADLESS=N && npx wdio wdio.conf.ts --cucumberOpts.tagExpression=@login",
-    "validLogin": "set HEADLESS=N && npx wdio wdio.conf.ts --cucumberOpts.tagExpression=@validLogin"
+    "validLogin": "set HEADLESS=N && npx wdio wdio.conf.ts --cucumberOpts.tagExpression=@validLogin",
+    "call": "set HEADLESS=N && npx wdio wdio.conf.ts --cucumberOpts.tagExpression=@call"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^10.3.1",
@@ -19,6 +20,7 @@
     "@wdio/local-runner": "^9.27.1",
     "allure-commandline": "^2.41.0",
     "dotenv": "^17.4.2",
+    "geckodriver": "^6.1.0",
     "supertest": "^7.2.2",
     "tsx": "^4.7.2",
     "typescript": "^5.3.3",

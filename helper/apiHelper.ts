@@ -36,7 +36,7 @@ async function GET(
     throw err;
   }
 }
-(async function POST(
+async function POST(
   baseURL: string,
   endpoint: string,
   authToken: string,
@@ -62,6 +62,6 @@ async function GET(
     console.error(`Error in POST request: ${err}`);
     throw err;
   }
-})("https://petstore.swagger.io/v2", "/user", "",payload);
+}//("https://petstore.swagger.io/v2", "/user", "",payload);
 
-export default {GET}
+export default {GET,POST}
