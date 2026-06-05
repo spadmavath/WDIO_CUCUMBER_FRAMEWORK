@@ -1,12 +1,15 @@
 import fs from 'fs';
-import path from 'path/win32';
+import path from 'path'; // ✅ cross-platform, not 'path/win32'
 
 export default class SessionManager {
 
     static sessionFile = path.join(process.cwd(), 'session.json');
 
-    static async saveSession() {
+    static sessionExists(): boolean {
+        return fs.existsSync(this.sessionFile);
+    }
 
+    static async saveSession() {
         const cookies = await browser.getCookies();
 
         fs.writeFileSync(
@@ -18,32 +21,31 @@ export default class SessionManager {
     }
 
     static async restoreSession() {
-
-        if (fs.existsSync(this.sessionFile)) {
-
-            const cookies = JSON.parse(
-                fs.readFileSync(
-                    this.sessionFile,
-                    'utf-8'
-                )
-            );
-
-            await browser.url(
-                'https://login.salesforce.com/'
-            );
-
-            await browser.setCookies(cookies);
-
-            await browser.refresh();
-
-            console.log(
-                'Session restored successfully'
-            );
+        if (!this.sessionExists()) {
+            throw new Error('No saved session found');
         }
-        else {
-            throw new Error(
-                'No saved session found'
-            );
-        }
+
+        const cookies = JSON.parse(
+            fs.readFileSync(this.sessionFile, 'utf-8')
+        );
+
+        // Navigate first before setting cookies (browser requirement)
+        await browser.url('https://login.salesforce.com/');
+        await browser.setCookies(cookies);
+        await browser.refresh();
+
+        // ✅ Wait for the page to fully load after restoring session
+        await browser.waitUntil(
+            async () => {
+                const url = await browser.getUrl();
+                return !url.includes('login.salesforce.com');
+            },
+            {
+                timeout: 30000,
+                timeoutMsg: 'Session restore failed — still on login page',
+            }
+        );
+
+        console.log('Session restored successfully');
     }
 }

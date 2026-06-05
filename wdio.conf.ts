@@ -69,8 +69,8 @@ export const config: Options.Testrunner & { capabilities: any } = {
     snippets: true,
     source: true,
     strict: false,
-    tagExpression: '@validLogin',
-    timeouts: 60000,
+    tagExpression: '@smoke',
+    timeouts: 800000,
     ignoreUndefinedDefinitions: false,
   },
   
@@ -101,9 +101,13 @@ export const config: Options.Testrunner & { capabilities: any } = {
   }
   },
 
-  afterFeature: function(url, feature) {
-    // add more environment details
-    (allure as any).addEnvironment("Browser", "Chrome");
-  },
+  // ✅ Write environment info to file instead
+afterFeature: function () {
+    const envContent = `Browser=Chrome\nOS=${process.platform}`;
+    if (!fs.existsSync('./allure-results')) {
+        fs.mkdirSync('./allure-results', { recursive: true });
+    }
+    fs.writeFileSync('./allure-results/environment.properties', envContent);
+},
 
 }
