@@ -10,7 +10,13 @@
     "call": "set HEADLESS=N && npx wdio wdio.conf.ts --cucumberOpts.tagExpression=@call",
     "getUsers": "set HEADLESS=N && npx wdio wdio.conf.ts --cucumberOpts.tagExpression=@getUsers",
     "createUser": "set HEADLESS=N && npx wdio wdio.conf.ts --cucumberOpts.tagExpression=@createUser",
-    "deleteUser": "set HEADLESS=N && npx wdio wdio.conf.ts --cucumberOpts.tagExpression=@deleteUser"
+    "deleteUser": "set HEADLESS=N && npx wdio wdio.conf.ts --cucumberOpts.tagExpression=@deleteUser",
+    "flipkartE2E": "set HEADLESS=N && npx wdio wdio.conf.ts --cucumberOpts.tagExpression=@flipkartE2E",
+    "smoke": "set HEADLESS=N && npx wdio wdio.conf.ts --cucumberOpts.tagExpression=@smoke",
+    "Regression": "set HEADLESS=N && npx wdio wdio.conf.ts --cucumberOpts.tagExpression=@Regression"
+
+
+
   },
   "devDependencies": {
     "@cucumber/cucumber": "^10.3.1",

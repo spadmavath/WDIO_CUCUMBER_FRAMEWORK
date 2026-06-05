@@ -19,25 +19,25 @@ export const config: Options.Testrunner & { capabilities: any } = {
   maxInstances: 10,
 
   capabilities:[
-    {
-      maxInstances:5,
-      browserName: 'chrome',
-      'goog:chromeOptions': {
+     {
+     maxInstances:5,
+       browserName: 'chrome',
+       'goog:chromeOptions': {
         args: [
-          '--no-sandbox',
-          '--disable-dev-shm-usage',
-          '--log-level=3',
+           '--no-sandbox',
+           '--disable-dev-shm-usage',
+           '--log-level=3',
           ...(headless?.toUpperCase() === 'Y' ? ['--disable-web-security', '--headless'] : []),
         ],
         excludeSwitches: ['enable-logging'],
-      },
-    },
-    {
-      maxInstances:5,
-      browserName: 'firefox',
+       },
+     },
+    // {
+    //   maxInstances:5,
+    //   browserName: 'firefox',
     
       
-    },
+    // },
   ],
 
   logLevel: debug.toUpperCase() === 'Y' ? 'debug' : 'error',
@@ -94,7 +94,7 @@ export const config: Options.Testrunner & { capabilities: any } = {
     const fileName = `${scenario.name.replace(/\s+/g, "_")}.png`;
 
     await browser.saveScreenshot(
-      `../allure-result/screenshot/${fileName}`
+      `./allure-results/screenshot/${fileName}`
     );
 
     console.log("Screenshot saved");

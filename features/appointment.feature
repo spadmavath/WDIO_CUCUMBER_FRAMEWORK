@@ -12,7 +12,7 @@ Feature: CURA Healthcare Service - Appointment Booking
   #   When I click the "Make Appointment" button
   #   Then I should be redirected to the login page
 
-  @smoke @navigation
+ @navigation
   Scenario: Verify homepage loads correctly
     Then the homepage title should be "CURA Healthcare Service"
     And the "Make Appointment" button should be visible
